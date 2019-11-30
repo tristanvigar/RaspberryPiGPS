@@ -1,9 +1,3 @@
-import os
-
-current_working_directory = os.getcwd()
-
-raw_output = []
-
 # Output Sequence (Source: https://github.com/adafruit/Adafruit_CircuitPython_GPS - About NMEA Data):
 #
 # GPGGA
@@ -46,10 +40,23 @@ raw_output = []
 # 4 - N or S (North or South)
 # 5 - Longitude
 # 6 - E or W (East or West)
+# 7 - Speed Over Ground, Knots
+# 8 - Track Made Good, Degrees true
+# 9 - Date, ddmmyy
+# 10 - Magnetic Variation, Degrees
+# 11 - E or W (Again?)
+# 12 - Checksum
+
 
 # GPVTG
 # b'$GPVTG,71.67,T,,M,0.13,N,0.24,K,A*0E\r\n'
 
+
+import os
+
+current_working_directory = os.getcwd()
+
+raw_output = []
 
 with open(current_working_directory + '/' + 'sample_gps_output.txt', 'r') as sample_data_file:
     for line in sample_data_file:
@@ -57,4 +64,3 @@ with open(current_working_directory + '/' + 'sample_gps_output.txt', 'r') as sam
 
 for line in raw_output:
     print(line)
-

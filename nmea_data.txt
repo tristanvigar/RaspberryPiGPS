@@ -35,7 +35,7 @@ RMC
        |         | |       | |        | |   |   |    |   |  |
 $--RMC,hhmmss.ss,A,1111.11,a,yyyyy.yy,a,x.x,x.x,xxxx,x.x,a*hh
 
-1. Time (YTC)
+1. Time (UTC)
 2. Status, V = Navigation receiver warning
 3. Latitude
 4. N or S
@@ -45,5 +45,5 @@ $--RMC,hhmmss.ss,A,1111.11,a,yyyyy.yy,a,x.x,x.x,xxxx,x.x,a*hh
 8. Track made good, degrees true
 9. Date, ddmmyy
 10. Magnetic Variation, degrees
-11.  E or W
+11. E or W
 12. Checksum
