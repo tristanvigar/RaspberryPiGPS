@@ -1,7 +1,10 @@
 import time
 import serial
+import os
 
-sample_data_write_path = '/home/pi/Development/PiGPS/sample_gps_output.txt'
+current_working_directory = os.getcwd()
+
+sample_data_write_path = current_working_directory + '/' + 'sample_gps_output.txt'
 
 uart = serial.Serial('/dev/ttyAMA0', baudrate=9600, timeout=10)
 
