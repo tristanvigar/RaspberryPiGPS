@@ -1,6 +1,5 @@
-# Output Sequence (Source: https://github.com/adafruit/Adafruit_CircuitPython_GPS - About NMEA Data):
+# GPGGA - Global Positioning System Fix Data. Time, Position and Fix related data for GPS receiver
 #
-# GPGGA
 #          1          2         3 4          5 6 7  8    9     10 11   12 13 14
 # b'$GPGGA,045357.000,5104.5807,N,11403.5843,W,1,09,1.01,1063.9,M,-17.5,M,,*63\r\n'
 #
@@ -15,9 +14,9 @@
 #     2 - Differential GPS Fix
 # 7 - Number Of Satellites In View
 # 8 - Horizontal Dilution of Precision
-# 9 - Antenna Altitude Above/Below Mean-Sea-Level (Geoid)
+# 9 - Antenna Altitude Above/Below Mean-Sea-Level (geoid)
 # 10 - Units of Antenna Altitude, Meters
-# 11 - Geoidal Separation (Difference between WGS-84 Earth Ellipsoid and Mean-Sea-Level (Geoid), "-" means below Ellipsoid
+# 11 - Geoidal Separation (Difference between WGS-84 Earth Ellipsoid and Mean-Sea-Level (geoid), "-" means below Ellipsoid
 # 12 - Units of Geoidal Seperation, Meters
 # 13 - Age of Differential GPS Data, Time in Seconds since last SC104 Type 1 or 9 Update,
 #      Null when DGPS is not used
@@ -25,12 +24,25 @@
 # 15 - Checksum
 
 
-# GPGSA
-# b'$GPGSA,A,3,19,13,11,07,15,28,01,17,30,,,,1.33,1.01,0.87*0B\r\n'
+# GPGSA - GPS DOP and Active Satellites
 #
+#          1 2 3  4  5  6  7  8  9  10 11 12 13 14 15  16   17   18
+# b'$GPGSA,A,3,19,13,11,07,15,28,01,17,30, ,  ,  ,1.33,1.01,0.87*0B\r\n'
+#
+# 1 - Total Number of Messages
+# 2 - Mode
+# 3 - ID of 1st Satellite Used For Fix
+# 4 - ID of 2nd Satellite Used For Fix
+# ...
+# 14 - ID of 14th Satellite Used For Fix
+# 15 - PDOP, Meters
+# 16 - HDOP, Meters
+# 17 - VDOP, Meters
+# 18 - Checksum
 
 
-# GPRMC
+# GPRMC - Recommended Minimum Navigation Data
+#
 #          1          2 3         4 5          6 7    8     9     10 11 12
 # b'$GPRMC,045357.000,A,5104.5807,N,11403.5843,W,0.13,71.67,301119, , ,A*45\r\n'
 #
@@ -48,9 +60,20 @@
 # 12 - Checksum
 
 
-# GPVTG
-# b'$GPVTG,71.67,T,,M,0.13,N,0.24,K,A*0E\r\n'
-
+# GPVTG - Track Made Good and Ground Speed
+#
+#          1     2 3 4 5    6 7    8 9
+# b'$GPVTG,71.67,T, ,M,0.13,N,0.24,K,A*0E\r\n'
+#
+# 1 - Track Degrees
+# 2 - T = true
+# 3 - Track Degrees
+# 4 - M = Magnetic
+# 5 - Speed, Knots
+# 6 - N = Knots
+# 7 - Speed, Kilometers Per Hour
+# 8 - K = Kilometers Per Hour
+# 9 - Checksum
 
 import os
 
