@@ -83,7 +83,14 @@ raw_output = []
 
 with open(current_working_directory + '/' + 'sample_gps_output.txt', 'r') as sample_data_file:
     for line in sample_data_file:
-        raw_output.append(line.strip())
+        temp = line.strip()
+        raw_output.append(temp[2:-1])
 
-for line in raw_output:
-    print(line)
+for entry in raw_output:
+    current_entry = entry.split(',')
+    print(current_entry)
+
+    # $GPGGA
+    # $GPGSA
+    # $GPRMC
+    # $GPVTG
