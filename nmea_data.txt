@@ -17,7 +17,7 @@
 # 9 - Antenna Altitude Above/Below Mean-Sea-Level (geoid)
 # 10 - Units of Antenna Altitude, Meters
 # 11 - Geoidal Separation (Difference between WGS-84 Earth Ellipsoid and Mean-Sea-Level (geoid), "-" means below Ellipsoid
-# 12 - Units of Geoidal Seperation, Meters
+# 12 - Units of Geoidal Separation, Meters
 # 13 - Age of Differential GPS Data, Time in Seconds since last SC104 Type 1 or 9 Update,
 #      Null when DGPS is not used
 # 14 - Differential Reference Station ID (0000-1023)
