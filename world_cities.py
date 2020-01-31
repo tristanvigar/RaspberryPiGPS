@@ -1,3 +1,5 @@
+# Used as cross reference against GPS latitude and longitude to determine nearby cities
+
 def load_cities_list():
     cities_list = []
     import os
