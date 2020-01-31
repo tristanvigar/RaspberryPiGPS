@@ -3,49 +3,14 @@ import time
 
 # Runtime variables
 current_working_directory = os.getcwd()
-sample_data_file_path = current_working_directory + '/' + 'sample_gps_output.txt'
-lines_of_gps_data_limit = 1000
-gps_file = '/dev/ttyAMA0'
-gps_baud_rate = 9600
-gps_timeout = 10
-gps_sample_output = []
+sample_data_path = current_working_directory + '/' + 'sample-data-files' + '/' + 'sample_gps_output.txt'
 
-def initialize_uart(gps_file, gps_baud_rate, gps_timeout):
-    import serial
-    try:
-        uart = serial.Serial(gps_file, baudrate=gps_baud_rate, timeout=gps_timeout)
-    except serial.SerialException as e:
-        import sys
-        print('{}'.format(e))
-        sys.exit()
-    return uart
-
-def retrieve_sample_gps_data(uart, lines_of_gps_data_limit):
-    sample_data_from_gps = []
-    for i in range(0, lines_of_gps_data_limit):
-        temp = uart.readline()
-        temp = temp.decode('utf-8')
-        sample_data_from_gps.append(temp)
-    return sample_data_from_gps
-
-def write_sample_gps_data(gps_sample_output):
-    with open(current_working_directory + '/' + 'sample_gps_output.txt', 'w') as sample_data_file:
-        for entry in gps_sample_output:
-            sample_data_file.write(entry)
-
-uart = initialize_uart(gps_file, gps_baud_rate, gps_timeout)
-
-gps_sample_output = retrieve_sample_gps_data(uart, lines_of_gps_data_threshold)
-
-write_sample_gps_data(gps_sample_output)
-
-# Class variables are modified by GPGGA, GPGSA, RPRMC and GPVTG
-# TODO: Refactor class variable assignments so they are updated
-#       when they make the most sense
-# TODO: Ensure gps_line_data is decoded prior to being passed to
-#       parse_gps_line()
 class GPS:
-    def __init__(self, uart):
+    def __init__(self):
+        self.gps_file = '/dev/ttyAMA0'
+        self.gps_baud_rate = 9600
+        self.gps_timeout = 10
+        self.uart_handler = None
         self.utc_time = None
         self.latitude = None
         self.latitude_direction = None
@@ -58,6 +23,23 @@ class GPS:
         self.hdop_in_meters = None
         self.vdop_in_meters = None
         self.speed_in_kilometers = None
+
+    def initialize_uart(gps_file, gps_baud_rate, gps_timeout):
+        import serial
+        try:
+            uart = serial.Serial(gps_file, baudrate=gps_baud_rate, timeout=gps_timeout)
+        except serial.SerialException as e:
+            import sys
+            print(f'Connection has failed. Exception: {e}')
+            sys.exit()
+        return uart
+
+    def retrieve_sample_gps_data():
+        for i in range(0, lines_of_gps_data_limit):
+            temp = uart.readline()
+            temp = temp.decode('utf-8')
+            sample_data_from_gps.append(temp)
+        return sample_data_from_gps
 
     def parse_gps_line(gps_data_line):
         gps_data = gps_data_line.split(',')
@@ -93,3 +75,8 @@ class GPS:
     # 8 - K = Kilometers Per Hour, 9 - Checksum
         if gps_data[0] = '$GPVTG':
             pass
+
+# gps.py starting point
+if __name__ = '__main__':
+
+    gps = 
